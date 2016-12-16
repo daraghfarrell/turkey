@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+
+    <form action="/addToList">
+        <fieldset>
+            <input type="text" name="name" />
+            <input type="number" name="number" />
+            <input type="submit" value="Add" />
+        </fieldset>
+    </form>
+
+
+    <p th:text="'List: '+ ${all}" />
+
+    <table>
+        <tbody>
+        <tr th:each="prod: ${all}">
+            <td th:text="${prod.name}"></td>
+            <td th:text="${prod.number}"></td>
+            <td>
+                <a href="/list"
+                th:href="@{/removeFromList(name=${prod.name})}">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
