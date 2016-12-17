@@ -23,7 +23,7 @@ public class TestWebController {
 
     @Test
     public void testStaticContent() throws Exception {
-        String response = template.getForObject("/btest.html", String.class);
+        String response = template.getForObject("/bootstrap-exs", String.class);
         assertThat(response.contains("404"), is(false));
         assertThat(response, containsString("<title>Test Bootstrap</title>"));
     }
@@ -39,7 +39,7 @@ public class TestWebController {
     public void testHomePageExists() throws Exception {
         String response = template.getForObject("/", String.class);
         assertThat(response.contains("404"), is(false));
-        assertThat(response, containsString("<title>YABE</title>"));
+        assertThat(response, containsString("<title>Turkey Time</title>"));
     }
 
     @Test
@@ -62,12 +62,5 @@ public class TestWebController {
         response = template.getForObject("/removeFromList?name=test567", String.class);
         assertThat(response.contains("404"), is(false));
         assertThat(response.contains("test567"), is(false));
-    }
-
-    @Test
-    public void testHome2Displays() {
-        String response = template.getForObject("/home2", String.class);
-        String expected = "<title>YABE Home2</title>";
-        assertThat(response, containsString(expected));
     }
 }

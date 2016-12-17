@@ -21,9 +21,9 @@ public class WebController {
     @Autowired
     AnyDomainRepo anyDomainRepo;
 
-    @RequestMapping("/btest")
+    @RequestMapping("/bootstrap-exs")
     public String btest(Model model) {
-        return "btest";
+        return "bootstrap-examples";
     }
 
     @RequestMapping("/home2")
@@ -34,7 +34,7 @@ public class WebController {
 
     @RequestMapping("/")
     public String home(Model model) {
-        return "home";
+        return "turkey-time";
     }
 
     @RequestMapping("/alive")
