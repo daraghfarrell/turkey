@@ -42,20 +42,10 @@ public class TestWebController {
         assertThat(response, containsString("<title>Turkey Time</title>"));
     }
 
-    @Test
-    public void testListReturnsEmptyListWhenNothingAdded() throws Exception {
-        String response = template.getForObject("/list", String.class);
-        assertThat(response.contains("404"), is(false));
-        assertThat(response, containsString("<title>List</title>"));
-    }
 
     @Test
     public void testListAddAndDelete() throws Exception {
-        String response = template.getForObject("/list", String.class);
-        assertThat(response.contains("404"), is(false));
-        assertThat(response, containsString("<title>List</title>"));
-
-        response = template.getForObject("/addToList?name=test567&number=567", String.class);
+        String response = template.getForObject("/addToList?name=test567&cookTimeInMin=567", String.class);
         assertThat(response.contains("404"), is(false));
         assertThat(response, containsString("test567"));
 

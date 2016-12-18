@@ -34,7 +34,7 @@ public class TestRestController {
         String response = template.getForObject("/rlist-add", String.class);
         assertThat(response.contains("400"), is(true));
 
-        response = template.getForObject("/rlist-add?name=test94746&number=94746", String.class);
+        response = template.getForObject("/rlist-add?name=test94746&cookTimeInMin=94746", String.class);
         assertThat(response.contains("404"), is(false));
         assertThat(response.contains("test94746"), is(true));
         assertThat(response.contains("94746"), is(true));
@@ -51,7 +51,7 @@ public class TestRestController {
         response = template.getForObject("/rlist-remove?name=123", String.class);
         assertThat(response, containsString("[]"));
 
-        response = template.getForObject("/rlist-add?name=test4324&number=4324", String.class);
+        response = template.getForObject("/rlist-add?name=test4324&cookTimeInMin=4324", String.class);
         assertThat(response.contains("404"), is(false));
         assertThat(response.contains("test4324"), is(true));
         assertThat(response.contains("4324"), is(true));
@@ -69,9 +69,9 @@ public class TestRestController {
         assertThat(response, containsString("[]"));
         assertThat(response.contains("[]"), is(true));
 
-        template.getForObject("/rlist-add?name=test1&number=123", String.class);
-        template.getForObject("/rlist-add?name=test2&number=223", String.class);
-        template.getForObject("/rlist-add?name=test3&number=323", String.class);
+        template.getForObject("/rlist-add?name=test1&cookTimeInMin=123", String.class);
+        template.getForObject("/rlist-add?name=test2&cookTimeInMin=223", String.class);
+        template.getForObject("/rlist-add?name=test3&cookTimeInMin=323", String.class);
 
         response = template.getForObject("/rlist", String.class);
         assertThat(response.contains("[]"), is(false));

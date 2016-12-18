@@ -13,7 +13,7 @@ import java.util.Date;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
     @Autowired
-    AnyDomainRepo anyDomainRepo;
+    FoodItemRepo foodItemRepo;
 
     @RequestMapping("/rlive")
     public String rlive() {
@@ -21,22 +21,22 @@ public class RestController {
     }
 
     @RequestMapping("/rlist")
-    public Iterable<AnyDomainOne> rlist() {
-        return anyDomainRepo.findAll();
+    public Iterable<FoodItem> rlist() {
+        return foodItemRepo.findAll();
     }
 
     @RequestMapping("/rlist-add")
-    public Iterable<AnyDomainOne> rlistAdd(
+    public Iterable<FoodItem> rlistAdd(
             @RequestParam(value="name") String name,
-            @RequestParam(value="number") int number) {
-        anyDomainRepo.save(new AnyDomainOne(name, number));
-        return anyDomainRepo.findAll();
+            @RequestParam(value="cookTimeInMin") int number) {
+        foodItemRepo.save(new FoodItem(name, number));
+        return foodItemRepo.findAll();
     }
 
     @RequestMapping("/rlist-remove")
-    public Iterable<AnyDomainOne>rlistRemove(
+    public Iterable<FoodItem>rlistRemove(
             @RequestParam(value="name") String name) {
-        anyDomainRepo.delete(name);
-        return anyDomainRepo.findAll();
+        foodItemRepo.delete(name);
+        return foodItemRepo.findAll();
     }
 }

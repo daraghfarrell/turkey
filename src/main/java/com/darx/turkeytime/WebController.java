@@ -17,24 +17,20 @@ public class WebController {
 
     public static final String LIST_TEMPLATE = "list";
     public static final String ALIVE_TEMPLATE = "alive";
+    public static final String TURKEY_TIME = "turkey-time";
 
     @Autowired
-    AnyDomainRepo anyDomainRepo;
+    FoodItemRepo foodItemRepo;
 
     @RequestMapping("/bootstrap-exs")
     public String btest(Model model) {
         return "bootstrap-examples";
     }
 
-    @RequestMapping("/home2")
-    public String home2(Model model) {
-        model.addAttribute("all", anyDomainRepo.findAll());
-        return "home2";
-    }
 
     @RequestMapping("/")
     public String home(Model model) {
-        return "turkey-time";
+        return TURKEY_TIME;
     }
 
     @RequestMapping("/alive")
@@ -43,31 +39,25 @@ public class WebController {
         return ALIVE_TEMPLATE;
     }
 
-    @RequestMapping("/list")
-    public String list(Model model) {
-        model.addAttribute("all", anyDomainRepo.findAll());
-        return LIST_TEMPLATE;
-    }
-
     @RequestMapping("/addToList")
     public String addToList(
             @RequestParam(value="name") String name,
-            @RequestParam(value="number") int number,
+            @RequestParam(value="cookTimeInMin") int number,
             Model model) {
 
-        anyDomainRepo.save(new AnyDomainOne(name, number));
-        model.addAttribute("all", anyDomainRepo.findAll());
+        foodItemRepo.save(new FoodItem(name, number));
+        model.addAttribute("all", foodItemRepo.findAll());
 
-        return LIST_TEMPLATE;
+        return TURKEY_TIME;
     }
 
     @RequestMapping("/removeFromList")
     public String listRemove(
             @RequestParam(value="name") String name,
             Model model) {
-        anyDomainRepo.delete(name);
-        model.addAttribute("all", anyDomainRepo.findAll());
+        foodItemRepo.delete(name);
+        model.addAttribute("all", foodItemRepo.findAll());
 
-        return LIST_TEMPLATE;
+        return TURKEY_TIME;
     }
 }

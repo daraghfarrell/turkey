@@ -52,8 +52,8 @@ public class App {
     }
 
     @Bean
-    LocalRegionFactoryBean<String, AnyDomainOne> testRegion(final GemFireCache cache) {
-        LocalRegionFactoryBean<String, AnyDomainOne> testRegion = new LocalRegionFactoryBean<>();
+    LocalRegionFactoryBean<String, FoodItem> testRegion(final GemFireCache cache) {
+        LocalRegionFactoryBean<String, FoodItem> testRegion = new LocalRegionFactoryBean<>();
         testRegion.setCache(cache);
         testRegion.setClose(false);
         testRegion.setName("test");
@@ -62,7 +62,7 @@ public class App {
     }
 
     @Autowired
-    AnyDomainRepo anyDomainRepo;
+    FoodItemRepo foodItemRepo;
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);

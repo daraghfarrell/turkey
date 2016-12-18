@@ -16,29 +16,29 @@ import static org.hamcrest.Matchers.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestAnyDomainOneGemfire {
     @Autowired
-    AnyDomainRepo anyDomainRepo;
+    FoodItemRepo foodItemRepo;
 
     @Test
     public void testWeCanCreateAndStoreADomainObject() {
         String name0 = "Name0";
         String name1 = "Name1";
-        AnyDomainOne any0 = new AnyDomainOne(name0, 0);
-        AnyDomainOne any1 = new AnyDomainOne(name1, 1);
+        FoodItem any0 = new FoodItem(name0, 0);
+        FoodItem any1 = new FoodItem(name1, 1);
 
-        anyDomainRepo.save(any0);
-        anyDomainRepo.save(any1);
+        foodItemRepo.save(any0);
+        foodItemRepo.save(any1);
 
-        AnyDomainOne resultA = anyDomainRepo.findByName(name0);
+        FoodItem resultA = foodItemRepo.findByName(name0);
         assertThat(name0, is(resultA.getName()));
 
-        AnyDomainOne resultB = anyDomainRepo.findByName(name1);
+        FoodItem resultB = foodItemRepo.findByName(name1);
         assertThat(name1, is(resultB.getName()));
 
         assertThat(name0, not(resultB));
         assertThat(name1, not(resultA));
 
-        anyDomainRepo.delete(name0);
-        anyDomainRepo.delete(name1);
+        foodItemRepo.delete(name0);
+        foodItemRepo.delete(name1);
     }
 
 }

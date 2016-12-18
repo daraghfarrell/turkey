@@ -9,32 +9,32 @@ import org.springframework.data.gemfire.mapping.Region;
  */
 
 @Region("test")
-public class AnyDomainOne {
+public class FoodItem {
 
     @Id
     public String name;
-    public int number;
+    public int cookTimeInMin;
 
     @PersistenceConstructor
-    public AnyDomainOne(String name, int number) {
+    public FoodItem(String name, int cookTimeInMin) {
         this.name = name;
-        this.number = number;
+        this.cookTimeInMin = cookTimeInMin;
     }
 
     @Override
     public String toString() {
-        return "AnyDomainOne{" +
+        return "FoodItem{" +
                 "name='" + name + '\'' +
-                ", number=" + number +
+                ", cookTimeInMin=" + cookTimeInMin +
                 '}';
     }
 
-    public int getNumber() {
-        return number;
+    public int getCookTimeInMin() {
+        return cookTimeInMin;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setCookTimeInMin(int cookTimeInMin) {
+        this.cookTimeInMin = cookTimeInMin;
     }
 
     public String getName() {
